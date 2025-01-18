@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {Router, RouterOutlet} from '@angular/router';
+import {environment} from '../environment';
 
 @Component({
   selector: 'items-root',
@@ -12,9 +13,9 @@ import {Router, RouterOutlet} from '@angular/router';
   templateUrl: './items.component.html'
 })
 
-export class AppComponent {
+export class ItemsComponent {
 
-  serverUrl: string = "http://localhost:5091";
+  serverUrl: string = environment.apiBaseUrl;
   Items: Item[] = [];
 
   newItemName = "";
@@ -24,7 +25,7 @@ export class AppComponent {
   }
 
   getItemsList() {
-    this.http.get(this.serverUrl + '/api/Items/GetItems')
+    this.http.get(this.serverUrl + 'Items/GetItems')
       .subscribe((response) => {
         this.Items = response as Item[];
       });
@@ -36,7 +37,7 @@ export class AppComponent {
 
   addItem() {
 
-    this.http.post(this.serverUrl + '/api/Items/CreateItem',
+    this.http.post(this.serverUrl + 'Items/CreateItem',
       {
         itemName: this.newItemName,
         price: this.newItemPrice
@@ -48,7 +49,7 @@ export class AppComponent {
   }
 
   removeItem(id: number) {
-    const url = `${this.serverUrl}/api/Items/DeleteItem?id=${id}`;
+    const url = `${this.serverUrl}Items/DeleteItem?id=${id}`;
 
     this.http.delete(url)
       .subscribe({
