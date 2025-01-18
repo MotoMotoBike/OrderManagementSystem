@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using OrderManagementSystem.Controllers.DTO;
 using OrderManagementSystem.Services;
 using OrderManagementSystem.Services.Abstract;
 
@@ -29,11 +30,11 @@ public class ItemsController : ControllerBase
     }
 
     [HttpPost ("CreateItem")]
-    public async Task<IActionResult> CreateItem(string itemName, decimal price)
+    public async Task<IActionResult> CreateItem(NewItemDto newItemDto)
     {
         try
         {
-            var items = await _service.AddItemAsync(itemName, price);
+            var items = await _service.AddItemAsync(newItemDto.ItemName, newItemDto.Price);
             return Ok(items);
         }
         catch (Exception ex)

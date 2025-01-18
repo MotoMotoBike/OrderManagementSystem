@@ -21,7 +21,7 @@ public class ItemService : IItemService
         return await _repository.GetItemAsync(id);
     }
 
-    public async Task<bool> AddItemAsync(string name, decimal price)
+    public async Task<bool> AddItemAsync(string? name, decimal price)
     {
         var Item = new Item
         {
