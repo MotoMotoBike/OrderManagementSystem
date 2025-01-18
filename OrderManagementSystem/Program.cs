@@ -1,17 +1,25 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using OrderManagementSystem.Data;
+using OrderManagementSystem.Data.Repositories;
+using OrderManagementSystem.Data.Repositories.Interfaces;
+using OrderManagementSystem.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Добавляем DbContext и строку подключения
+// DbContext
 builder.Services.AddDbContext<OrderManagementContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Добавляем контроллеры
+//Services
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
+//Repositories
+builder.Services.AddScoped<IOrderService, OrderService>();
+
 builder.Services.AddControllers();
 
-// Добавляем Swagger для тестирования API
+//Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -31,7 +39,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "Order Management API v1");
-        options.RoutePrefix = string.Empty; // Swagger доступен по корневому URL
+        options.RoutePrefix = string.Empty;
     });
 
 }
