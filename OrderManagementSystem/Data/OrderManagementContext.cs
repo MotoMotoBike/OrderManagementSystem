@@ -11,6 +11,7 @@ public class OrderManagementContext : DbContext
     }
 
     public DbSet<Order>? Orders { get; set; }
+    public DbSet<Item>? Items { get; set; }
     public DbSet<OrderItem>? OrderItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -50,6 +51,11 @@ public class OrderManagementContext : DbContext
 
     public IQueryable<T> GetDeleted<T>() where T : class, IEntity
     {
-        return Set<T>();
+        return Set<T>().Where(e => e.IsDeleted);
+    }
+    public async Task<long> Create<T>(T entity) where T : class, IEntity
+    {
+        await Set<T>().AddAsync(entity);
+        return entity.Id;
     }
 }

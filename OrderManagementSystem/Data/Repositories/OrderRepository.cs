@@ -29,17 +29,9 @@ public class OrderRepository : IOrderRepository
         return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task<bool> DeleteOrderAsync(Order order)
+    public async Task<bool> UpdateOrderAsync(Order order)
     {
-        _context.Orders.Remove(order);
-        return await _context.SaveChangesAsync() > 0;
-    }
-
-    public async Task<bool> DeleteOrderAsync(long id)
-    {
-        var order = await GetOrderAsync(id);
-        if (order == null) throw new Exception("Order not found");
-        _context.Orders.Remove(order);
+        _context.Update(order);
         return await _context.SaveChangesAsync() > 0;
     }
 }

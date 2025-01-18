@@ -35,6 +35,8 @@ public class OrderService : IOrderService
 
     public async Task<bool> DeleteOrderAsync(long id)
     {
-        return await _repository.DeleteOrderAsync(id);
+        var order = await _repository.GetOrderAsync(id);
+        order.IsDeleted = true;
+        return await _repository.UpdateOrderAsync(order);
     }
 }

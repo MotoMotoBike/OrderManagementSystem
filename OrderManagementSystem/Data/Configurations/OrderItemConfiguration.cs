@@ -23,8 +23,7 @@ namespace OrderManagementSystem.Data.Configurations
                 .OnDelete(DeleteBehavior.Cascade); 
 
             builder.HasOne(oi => oi.Item)
-                .WithMany()
-                .HasForeignKey(oi => oi.ItemId)
+                .WithOne()
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
