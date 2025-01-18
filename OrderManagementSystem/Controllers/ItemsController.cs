@@ -14,7 +14,7 @@ public class ItemsController : ControllerBase
         _service = service;
     }
 
-    [HttpGet]
+    [HttpGet ("GetItems")]
     public async Task<IActionResult> GetItems()
     {
         try
@@ -28,7 +28,7 @@ public class ItemsController : ControllerBase
         }
     }
 
-    [HttpPost]
+    [HttpPost ("CreateItem")]
     public async Task<IActionResult> CreateItem(string itemName, decimal price)
     {
         try
@@ -42,7 +42,7 @@ public class ItemsController : ControllerBase
         }
     }
 
-    [HttpDelete]
+    [HttpDelete ("DeleteItem")]
     public async Task<IActionResult> DeleteItem(long id)
     {
         try

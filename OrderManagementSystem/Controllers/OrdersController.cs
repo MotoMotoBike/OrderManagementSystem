@@ -17,7 +17,7 @@ public class OrdersController : ControllerBase
         _service = service;
     }
 
-    [HttpGet]
+    [HttpGet ("GetOrders")]
     public async Task<IActionResult> GetOrders()
     {
         try
@@ -31,7 +31,7 @@ public class OrdersController : ControllerBase
         }
     }
 
-    [HttpPost]
+    [HttpPost ("CreateOrder")]
     public async Task<IActionResult> CreateOrder(string orderName, List<OrderItemDto> itemIds)
     {
         try
@@ -45,7 +45,7 @@ public class OrdersController : ControllerBase
         }
     }
 
-    [HttpDelete]
+    [HttpDelete ("DeleteOrder")]
     public async Task<IActionResult> DeleteOrder(long id)
     {
         try
