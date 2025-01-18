@@ -7,8 +7,16 @@ import { serverRoutes } from './app.routes.server';
 const serverConfig: ApplicationConfig = {
   providers: [
     provideServerRendering(),
-    provideServerRoutesConfig(serverRoutes)
-  ]
+    provideServerRoutesConfig(serverRoutes),
+    {
+      provide: 'SERVER_ADDRESS',
+      useValue: 'http://localhost',  // Ваш адрес сервера
+    },
+    {
+      provide: 'SERVER_PORT',
+      useValue: 5091,  // Порт сервера
+    }
+  ],
 };
 
 export const config = mergeApplicationConfig(appConfig, serverConfig);
