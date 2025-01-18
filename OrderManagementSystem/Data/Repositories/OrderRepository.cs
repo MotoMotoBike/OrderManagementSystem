@@ -15,7 +15,7 @@ public class OrderRepository : IOrderRepository
 
     public async Task<IEnumerable<Order>> GetOrdersAsync()
     {
-        return await _context.Orders.Include(o => o.Items).ToListAsync();
+        return await _context.Orders.Include(o => o.OrderItem).ToListAsync();
     }
 
     public async Task<Order> GetOrderAsync(long id)
@@ -34,13 +34,11 @@ public class OrderRepository : IOrderRepository
         _context.Orders.Remove(order);
         return await _context.SaveChangesAsync() > 0;
     }
+
     public async Task<bool> DeleteOrderAsync(long id)
     {
         var order = await GetOrderAsync(id);
-        if (order == null)
-        {
-            throw new Exception("Order not found");
-        }
+        if (order == null) throw new Exception("Order not found");
         _context.Orders.Remove(order);
         return await _context.SaveChangesAsync() > 0;
     }

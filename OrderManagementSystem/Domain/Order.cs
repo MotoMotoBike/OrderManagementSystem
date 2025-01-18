@@ -11,8 +11,11 @@ namespace OrderManagementSystem.Domain
         public bool IsDeleted { get; set; }
 
         public string? OrderName { get; set; }
-        public List<OrderItem> Items { get; set; } = new List<OrderItem>();
-
-        public decimal TotalPrice => Items.Sum(item => item.Quantity * item.UnitPrice);
+        public List<OrderItem> OrderItem { get; set; } = new List<OrderItem>();
+        public decimal TotalPrice => OrderItem.Sum(oi =>
+        {
+            if (oi.Item != null) return oi.Quantity * oi.Item.UnitPrice;
+            return 0;
+        });
     }
 }

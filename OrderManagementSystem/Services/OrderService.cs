@@ -27,7 +27,7 @@ public class OrderService : IOrderService
         var order = new Order()
         {
             OrderName = name,
-            Items = new List<OrderItem>()
+            OrderItem = new List<OrderItem>()
         };
         
         return await _repository.AddOrderAsync(order);

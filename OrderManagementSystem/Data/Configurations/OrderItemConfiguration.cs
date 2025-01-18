@@ -8,12 +8,24 @@ namespace OrderManagementSystem.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<OrderItem> builder)
         {
-            builder.Property(i => i.ProductName)
-                .IsRequired()
-                .HasMaxLength(100);
+            builder.Property(oi => oi.Quantity)
+                .IsRequired(); 
 
-            builder.Property(i => i.UnitPrice)
-                .HasColumnType("decimal(18,2)");
+            builder.Property(oi => oi.OrderId)
+                .IsRequired(); 
+
+            builder.Property(oi => oi.ItemId)
+                .IsRequired();
+
+            builder.HasOne(oi => oi.Order)
+                .WithMany(o => o.OrderItem)
+                .HasForeignKey(oi => oi.OrderId)
+                .OnDelete(DeleteBehavior.Cascade); 
+
+            builder.HasOne(oi => oi.Item)
+                .WithMany()
+                .HasForeignKey(oi => oi.ItemId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
