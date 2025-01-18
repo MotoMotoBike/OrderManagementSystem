@@ -29,11 +29,11 @@ public class OrdersController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateOrder(string orderName)
+    public async Task<IActionResult> CreateOrder(string orderName, List<long> itemIds)
     {
         try
         {
-            var orders = await _service.AddOrderAsync(orderName);
+            var orders = await _service.AddOrderAsync(orderName, itemIds);
             return Ok(orders);
         }
         catch (Exception ex)
