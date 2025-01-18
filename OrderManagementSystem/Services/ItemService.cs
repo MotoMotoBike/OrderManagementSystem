@@ -1,5 +1,6 @@
 using OrderManagementSystem.Domain;
 using OrderManagementSystem.Services;
+using OrderManagementSystem.Services.Abstract;
 
 public class ItemService : IItemService
 {
@@ -10,7 +11,7 @@ public class ItemService : IItemService
         _repository = repository;
     }
 
-    public async Task<IEnumerable<Item>> GetItemsAsync()
+    public async Task<List<Item>> GetItemsAsync()
     {
         return await _repository.GetItemsAsync();
     }

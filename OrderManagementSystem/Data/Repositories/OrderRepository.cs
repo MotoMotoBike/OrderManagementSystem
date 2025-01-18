@@ -13,23 +13,23 @@ public class OrderRepository : IOrderRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Order>> GetOrdersAsync()
+    public async Task<List<Order>> GetOrdersAsync()
     {
-        return await _context.Orders.Include(o => o.OrderItem).ToListAsync();
+        return await _context.Get<Order>().Include(o => o.OrderItem).ToListAsync();
     }
 
-    public async Task<Order> GetOrderAsync(long id)
+    public async Task<Order?> GetOrderAsync(long id)
     {
-        return await _context.Orders.FirstOrDefaultAsync(o => o.Id == id);
+        return await _context.Get<Order>().FirstOrDefaultAsync(o => o.Id == id);
     }
 
     public async Task<bool> AddOrderAsync(Order order)
     {
-        _context.Orders.Add(order);
+        await _context.Create(order);
         return await _context.SaveChangesAsync() > 0;
     }
 
-    public async Task<bool> UpdateOrderAsync(Order order)
+    public async Task<bool> UpdateOrderAsync(Order? order)
     {
         _context.Update(order);
         return await _context.SaveChangesAsync() > 0;

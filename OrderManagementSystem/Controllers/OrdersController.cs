@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using OrderManagementSystem.Controllers.DTO;
+using OrderManagementSystem.Domain;
 using OrderManagementSystem.Services;
+using OrderManagementSystem.Services.Abstract;
 
 namespace OrderManagementSystem.Controllers;
 
@@ -29,7 +32,7 @@ public class OrdersController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateOrder(string orderName, List<long> itemIds)
+    public async Task<IActionResult> CreateOrder(string orderName, List<OrderItemDto> itemIds)
     {
         try
         {

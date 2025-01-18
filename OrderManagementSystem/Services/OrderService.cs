@@ -1,5 +1,7 @@
+using OrderManagementSystem.Controllers.DTO;
 using OrderManagementSystem.Data.Repositories.Interfaces;
 using OrderManagementSystem.Domain;
+using OrderManagementSystem.Services.Abstract;
 
 namespace OrderManagementSystem.Services;
 
@@ -14,7 +16,7 @@ public class OrderService : IOrderService
         _itemRepository = itemRepository;
     }
 
-    public async Task<IEnumerable<Order>> GetOrdersAsync()
+    public async Task<List<Order>> GetOrdersAsync()
     {
         return await _orderRepository.GetOrdersAsync();
     }
@@ -23,17 +25,23 @@ public class OrderService : IOrderService
     {
         return await _orderRepository.GetOrderAsync(id);
     }
-    public async Task<bool> AddOrderAsync(string name, List<long> itemIds)
+    public async Task<bool> AddOrderAsync(string name, List<OrderItemDto> items)
     {
-        var items = await _itemRepository.GetItemsAsync(itemIds);
+        var dbItems = await _itemRepository.GetItemsAsync(items.Select(x => x.ItemId).ToList());
         
-        if (items.Count != itemIds.Count)
+        if (dbItems.Count != items.Count)
             throw new Exception("Invalid item ids");
+        
+        var orderItems = dbItems.Select(dbItem => new OrderItem
+        {
+            Item = dbItem,
+            Quantity = items.First(x => x.ItemId == dbItem.Id).Quantity
+        }).ToList();
         
         var order = new Order
         {
             OrderName = name,
-            OrderItem = new List<OrderItem>()
+            OrderItem = orderItems
         };
 
         return await _orderRepository.AddOrderAsync(order);

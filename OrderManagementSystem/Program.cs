@@ -5,6 +5,7 @@ using OrderManagementSystem.Data;
 using OrderManagementSystem.Data.Repositories;
 using OrderManagementSystem.Data.Repositories.Interfaces;
 using OrderManagementSystem.Services;
+using OrderManagementSystem.Services.Abstract;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,7 @@ builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson();
 
 //Swagger
 builder.Services.AddEndpointsApiExplorer();
