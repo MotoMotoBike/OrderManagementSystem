@@ -3,11 +3,13 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {RouterOutlet} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HttpClientModule, FormsModule, CommonModule],
+  imports: [HttpClientModule, FormsModule, CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -19,7 +21,8 @@ export class AppComponent {
 
   newItemName = "";
   newItemPrice = 0;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private router: Router) {
   }
 
   getItemsList() {
@@ -60,7 +63,6 @@ export class AppComponent {
         }
       });
   }
-
 }
 
 export interface Item {
