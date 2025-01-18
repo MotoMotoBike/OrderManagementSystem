@@ -1,5 +1,65 @@
+# .NET
 bin/
 obj/
-/packages/
-riderModule.iml
-/_ReSharper.Caches/
+
+# User-specific files
+.vs/
+.vscode/
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]ist/
+[Dd]eploy/
+
+# User files
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer files
+*.vsix
+
+# Windows Installer generated files
+*.vsixmanifest
+
+# Windows Installer intermediate files
+*.vsscc
+*.vssscc
+
+# Azure Web Apps
+$tf/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+
+# VS for Mac
+.vscode/
+
+# User-specific files
+.vs2017/
+.vs2019/
+.vs2015/
+.vs2013/
+
+# Tye
+.tye/
+
+# .NET Core Build
+artifacts/
+
+# JetBrains Rider
+.idea/
+
+# npm
+node_modules/
+
+# VS Code directories
+.vscode/
