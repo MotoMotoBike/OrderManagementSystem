@@ -7,7 +7,8 @@ import {Router, RouterOutlet} from '@angular/router';
 import {environment} from '../environment';
 
 @Component({
-  selector: 'items-root',
+  selector: 'app-items',
+  standalone: true,
   imports: [HttpClientModule, FormsModule, CommonModule, RouterOutlet],
   templateUrl: './items.component.html'
 })

@@ -8,6 +8,7 @@ import {environment} from '../environment';
 
 @Component({
   selector: 'cart-root',
+  standalone : true,
   imports: [HttpClientModule, FormsModule, CommonModule, RouterOutlet],
   templateUrl: './cart.component.html',
 })
