@@ -14,6 +14,5 @@ public class OrderItem : IEntity
     [JsonIgnore]
     public Order? Order { get; set; }
     public long ItemId { get; set; }
-    [JsonIgnore]
     public Item? Item { get; set; }
 }
