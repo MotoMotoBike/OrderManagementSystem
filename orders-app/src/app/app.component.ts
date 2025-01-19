@@ -1,10 +1,12 @@
-﻿import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true, // Это standalone-компонент
-  imports: [RouterOutlet], // Подключаем маршрутизацию через RouterOutlet
+  imports: [CommonModule, RouterLink, RouterOutlet],
   templateUrl: './app.component.html'
 })
-export class AppComponent {}
+export class AppComponent {
+  footerUrl = 'https://github.com/MotoMotoBike';
+}

@@ -1,7 +1,32 @@
-﻿<nav>
-  <a routerLink="/items" routerLinkActive="active">Items</a>
-  <a routerLink="/cart" routerLinkActive="active">Cart</a>
-</nav>
+<div class="app">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Logo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">Главная</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/items">Товары</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/cart">Корзина</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-<router-outlet>
-</router-outlet>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="bg-light text-center py-3">
+    <a href="{{ footerUrl }}" class="text-decoration-none text-dark">Git MotoMotoBike</a>
+  </footer>
+</div>

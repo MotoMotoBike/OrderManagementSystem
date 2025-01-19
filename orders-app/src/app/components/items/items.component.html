@@ -1,0 +1,36 @@
+
+
+<div class="container mt-3">
+  <h2 class="text-center mb-4">Список товаров</h2>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Добавить товар</h5>
+      <form (ngSubmit)="addItem()">
+        <div class="row mb-3">
+          <div class="col">
+            <label for="newItemName" class="form-label">Название товара</label>
+            <input id="newItemName" [(ngModel)]="newItemName" name="newItemName" class="form-control" placeholder="Введите название товара" />
+          </div>
+          <div class="col">
+            <label for="newItemPrice" class="form-label">Цена товара</label>
+            <input id="newItemPrice" [(ngModel)]="newItemPrice" name="newItemPrice" type="number" class="form-control" placeholder="Введите цену товара" />
+          </div>
+          <div class="col-auto d-flex align-items-end">
+            <button type="submit" class="btn btn-primary">Добавить товар</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Список товаров -->
+  <ul class="list-group">
+    <li *ngFor="let item of Items" class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <strong>{{ item.productName }}</strong> - {{ item.unitPrice}}
+      </div>
+      <button (click)="removeItem(item.id)" class="btn btn-danger btn-sm">Удалить</button>
+    </li>
+  </ul>
+</div>
