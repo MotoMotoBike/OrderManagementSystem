@@ -53,7 +53,7 @@ public class OrderManagementContext : DbContext
     {
         return Set<T>().Where(e => e.IsDeleted);
     }
-    public async Task<long> Create<T>(T entity) where T : class, IEntity
+    public async Task<long?> Create<T>(T entity) where T : class, IEntity
     {
         await Set<T>().AddAsync(entity);
         return entity.Id;

@@ -32,11 +32,11 @@ public class OrdersController : ControllerBase
     }
 
     [HttpPost ("CreateOrder")]
-    public async Task<IActionResult> CreateOrder(string orderName, List<OrderItemDto> itemIds)
+    public async Task<IActionResult> CreateOrder(NewOrderDto newOrderDto)
     {
         try
         {
-            var orders = await _service.AddOrderAsync(orderName, itemIds);
+            var orders = await _service.AddOrderAsync($"Order: {Guid.NewGuid()}", newOrderDto.ItemIds);
             return Ok(orders);
         }
         catch (Exception ex)

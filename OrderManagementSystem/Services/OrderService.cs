@@ -34,6 +34,7 @@ public class OrderService : IOrderService
         
         var orderItems = dbItems.Select(dbItem => new OrderItem
         {
+            Id = BitConverter.ToInt64(Guid.NewGuid().ToByteArray(),0),
             Item = dbItem,
             Quantity = items.First(x => x.ItemId == dbItem.Id).Quantity
         }).ToList();
