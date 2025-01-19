@@ -50,7 +50,7 @@ export class CartComponent implements OnInit {
 
   checkout(): void {
     if (this.cartItems.length === 0) {
-      alert("Ваша корзина пуста. Добавьте товары перед оформлением заказа.");
+      alert("Your cart is empty. Please add items before proceeding to checkout.");
     } else {
 
       let orderDto: OrderItemDto[] = this.mapCartToOrderDto(this.cartItems);
@@ -58,10 +58,11 @@ export class CartComponent implements OnInit {
       this.http.post(this.serverUrl + '/Orders/CreateOrder',
         { itemIds: orderDto})
         .subscribe((response) => {
-          console.log(response);
+          alert("Order placed! Thank you for your purchase.");
+        }, (error) => {
+          alert("The order was not placed due to a system error.");
         });
 
-      alert("Заказ оформлен! Спасибо за покупку.");
       this.clearCart();
     }
   }

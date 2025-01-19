@@ -43,10 +43,15 @@ export class ItemsComponent {
         itemName: this.newItemName,
         price: this.newItemPrice
       })
-      .subscribe((response) => {
-        console.log(response);
-        this.getItemsList();
-      });
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.getItemsList();
+          alert('Item added successfully!');
+        },
+          (error) => {
+            alert('The item was not added. Please check the parameters and try again.');
+        });
   }
 
   removeItem(id: number) {

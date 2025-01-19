@@ -34,6 +34,11 @@ public class ItemsController : ControllerBase
     {
         try
         {
+            if(newItemDto.Price <= 0)
+            {
+                return BadRequest("Price must be greater than 0");
+            }
+            
             var items = await _service.AddItemAsync(newItemDto.ItemName, newItemDto.Price);
             return Ok(items);
         }
