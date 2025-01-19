@@ -41,7 +41,7 @@ interface OrderDto {
 export class OrdersComponent implements OnInit {
 
   orders: OrderDto[] = [];
-  serverUrl = environment.apiBaseUrl;
+  serverUrl= environment.apiBaseUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -49,14 +49,14 @@ export class OrdersComponent implements OnInit {
     this.getOrders();
   }
   getOrders(): void {
-    this.http.get<OrderDto[]>(`${this.serverUrl}Orders/GetOrders`)
+    this.http.get<OrderDto[]>(`${this.serverUrl}/Orders/GetOrders`)
       .subscribe((response) => {
         this.orders = response;
         console.log(this.orders); // Для дебага
       });
   }
   deleteOrder(id : number): void {
-    this.http.delete(`${this.serverUrl}Orders/DeleteOrder?id=${id}`)
+    this.http.delete(`${this.serverUrl}/Orders/DeleteOrder?id=${id}`)
       .subscribe(() => {
         this.orders = this.orders.filter((o) => o.id !== id);
       });

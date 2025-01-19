@@ -27,7 +27,7 @@ export class ItemsComponent {
   }
 
   getItemsList() {
-    this.http.get(this.serverUrl + 'Items/GetItems')
+    this.http.get(this.serverUrl + '/Items/GetItems')
       .subscribe((response) => {
         this.Items = response as Item[];
       });
@@ -38,7 +38,7 @@ export class ItemsComponent {
 
   addItem() {
 
-    this.http.post(this.serverUrl + 'Items/CreateItem',
+    this.http.post(this.serverUrl + '/Items/CreateItem',
       {
         itemName: this.newItemName,
         price: this.newItemPrice
@@ -50,7 +50,7 @@ export class ItemsComponent {
   }
 
   removeItem(id: number) {
-    const url = `${this.serverUrl}Items/DeleteItem?id=${id}`;
+    const url = `${this.serverUrl}/Items/DeleteItem?id=${id}`;
 
     this.http.delete(url)
       .subscribe({

@@ -55,7 +55,7 @@ export class CartComponent implements OnInit {
 
       let orderDto: OrderItemDto[] = this.mapCartToOrderDto(this.cartItems);
 
-      this.http.post(this.serverUrl + 'Orders/CreateOrder',
+      this.http.post(this.serverUrl + '/Orders/CreateOrder',
         { itemIds: orderDto})
         .subscribe((response) => {
           console.log(response);
