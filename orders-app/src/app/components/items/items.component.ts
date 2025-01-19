@@ -66,7 +66,7 @@ export class ItemsComponent {
 
   addToCart(item: Item): void {
     console.log('Adding item to cart:', item);
-    this.cartService.addToCart(item.id, item.productName, item.unitPrice); // Добавляем товар в корзину с количеством 1
+    this.cartService.addToCart(item.id, item.productName, item.unitPrice);
   }
 }
 export interface Item {

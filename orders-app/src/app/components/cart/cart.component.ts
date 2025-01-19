@@ -22,19 +22,16 @@ export class CartComponent implements OnInit {
     this.loadCart();
   }
 
-  // Загрузить товары в корзину
   loadCart(): void {
     console.log('Adding item to cart:', this.cartService.getCartItems());
     this.cartItems = this.cartService.getCartItems();
   }
 
-  // Увеличить количество товара в корзине
   increaseQuantity(item: CartItem): void {
     this.cartService.addToCart(item.id, item.name, item.price);
     this.loadCart();
   }
 
-  // Уменьшить количество товара в корзине
   decreaseQuantity(item: CartItem): void {
     this.cartService.removeFromCart(item.id);
     this.loadCart();
@@ -45,8 +42,8 @@ export class CartComponent implements OnInit {
 
   mapCartToOrderDto(cartItems: CartItem[]): OrderItemDto[] {
     return cartItems.map(item => ({
-      itemId: item.id,       // Используем id из CartItem как itemId
-      quantity: item.quantity  // Количество товара остаётся таким же
+      itemId: item.id,
+      quantity: item.quantity
     }));
   }
 
@@ -64,13 +61,11 @@ export class CartComponent implements OnInit {
           console.log(response);
         });
 
-      // Логика оформления заказа (например, отправка данных на сервер или другое действие)
       alert("Заказ оформлен! Спасибо за покупку.");
-      this.clearCart(); // Очистка корзины после оформления
+      this.clearCart();
     }
   }
 
-    // Очистить корзину
   clearCart(): void {
     this.cartService.clearCart();
     this.loadCart();

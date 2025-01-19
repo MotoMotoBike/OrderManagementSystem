@@ -48,8 +48,6 @@ export class OrdersComponent implements OnInit {
   ngOnInit(): void {
     this.getOrders();
   }
-
-  // Метод для запроса всех заказов
   getOrders(): void {
     this.http.get<OrderDto[]>(`${this.serverUrl}Orders/GetOrders`)
       .subscribe((response) => {

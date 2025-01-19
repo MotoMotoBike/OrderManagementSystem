@@ -1,34 +1,48 @@
 <div class="app">
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Logo</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/">Главная</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/items">Товары</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/cart">Корзина</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/orders">Все заказы</a>
-          </li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">MotoMotoBike</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" routerLink="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/items">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/cart">Cart</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/orders">Orders</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   </header>
 
-  <main>
+  <main class="container mt-4">
     <router-outlet></router-outlet>
   </main>
 
-  <footer class="bg-light text-center py-3">
-    <a href="{{ footerUrl }}" class="text-decoration-none text-dark">Git MotoMotoBike</a>
+  <footer class="bg-light text-center py-3 mt-5 border-top">
+    <p class="mb-0">
+      <a href="https://github.com/MotoMotoBike" class="text-decoration-none text-dark fw-bold">
+        GitHub: MotoMotoBike
+      </a>
+    </p>
   </footer>
 </div>

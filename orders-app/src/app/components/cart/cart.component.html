@@ -1,37 +1,57 @@
 <div class="container mt-5">
-  <h2 class="text-center mb-4">Корзина</h2>
+  <h2 class="text-center mb-4">Shopping Cart</h2>
 
+  <!-- Message if the cart is empty -->
   <div *ngIf="cartItems.length === 0" class="text-center">
-    <p>Ваша корзина пуста.</p>
+    <p>Your cart is empty.</p>
   </div>
 
+  <!-- Display cart items if any -->
   <div *ngIf="cartItems.length > 0">
     <ul class="list-group">
-      <li *ngFor="let item of cartItems" class="list-group-item d-flex justify-content-between align-items-center">
+      <li
+        *ngFor="let item of cartItems"
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
         <div class="d-flex justify-content-between w-100">
+          <!-- Product Name -->
           <div class="me-3">
             <strong>{{ item.name }}</strong>
           </div>
+          <!-- Quantity Controls -->
           <div class="d-flex align-items-center">
-            <button (click)="decreaseQuantity(item)" class="btn btn-danger btn-sm me-2">-</button>
+            <button
+              (click)="decreaseQuantity(item)"
+              class="btn btn-danger btn-sm me-2"
+            >
+              -
+            </button>
             <span>{{ item.quantity }}</span>
-            <button (click)="increaseQuantity(item)" class="btn btn-success btn-sm ms-2">+</button>
+            <button
+              (click)="increaseQuantity(item)"
+              class="btn btn-success btn-sm ms-2"
+            >
+              +
+            </button>
           </div>
         </div>
       </li>
     </ul>
 
+    <!-- Order Total -->
     <div class="mt-4">
-      <h4 class="text-end">Сумма заказа: <strong>{{ calculateTotalPrice()}}</strong></h4>
+      <h4 class="text-end">Total Price: <strong>{{ calculateTotalPrice() | currency }}</strong></h4>
     </div>
 
+    <!-- Cart Actions -->
     <div class="d-flex justify-content-center mt-3">
+      <!-- Clear Cart Button -->
       <div class="d-flex justify-content-center mt-3 mb-3 me-2">
-        <button (click)="clearCart()" class="btn btn-danger">Очистить корзину</button>
+        <button (click)="clearCart()" class="btn btn-danger">Clear Cart</button>
       </div>
-      <!-- Кнопка для оформления заказа -->
+      <!-- Checkout Button -->
       <div class="d-flex justify-content-center mt-3 mb-3 ms-2">
-        <button (click)="checkout()" class="btn btn-primary">Оформить заказ</button>
+        <button (click)="checkout()" class="btn btn-primary">Checkout</button>
       </div>
     </div>
   </div>
