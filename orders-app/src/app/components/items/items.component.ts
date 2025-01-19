@@ -73,6 +73,14 @@ export class ItemsComponent {
     console.log('Adding item to cart:', item);
     this.cartService.addToCart(item.id, item.productName, item.unitPrice);
   }
+
+  preventNegative(event: KeyboardEvent): void {
+    const charCode = event.key;
+    if (charCode === '-' || charCode === '+') {
+      event.preventDefault();
+    }
+  }
+
 }
 export interface Item {
   id: number

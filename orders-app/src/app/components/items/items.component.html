@@ -25,7 +25,9 @@
               name="newItemPrice"
               type="number"
               class="form-control"
+              min="0"
               placeholder="Enter product price"
+              (keypress)="preventNegative($event)"
             />
           </div>
           <div class="col-auto d-flex align-items-end">
