@@ -20,7 +20,6 @@ import {CartComponent} from './cart/cart.component';
   ],
   // если это главный компонент
 })
-export class AppModule {}
 export class AppComponent {
 
 }
