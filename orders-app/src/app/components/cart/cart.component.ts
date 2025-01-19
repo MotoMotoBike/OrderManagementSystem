@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {Router, RouterOutlet} from '@angular/router';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../environments/environment.development';
 
 @Component({
   selector: 'cart-root',
