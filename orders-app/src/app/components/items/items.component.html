@@ -28,9 +28,14 @@
   <ul class="list-group">
     <li *ngFor="let item of Items" class="list-group-item d-flex justify-content-between align-items-center">
       <div>
-        <strong>{{ item.productName }}</strong> - {{ item.unitPrice}}
+        <strong>{{ item.productName }}</strong> - {{ item.unitPrice }}
       </div>
-      <button (click)="removeItem(item.id)" class="btn btn-danger btn-sm">Удалить</button>
+      <div class="d-flex justify-content-between" style="width: 200px;">
+        <button (click)="addToCart(item)" class="btn btn-success btn-sm me-2 mt-2 mb-2">Добавить в корзину</button>
+        <button (click)="removeItem(item.id)" class="btn btn-danger btn-sm me-2 mt-2 mb-2">Удалить</button>
+      </div>
     </li>
   </ul>
+
+
 </div>

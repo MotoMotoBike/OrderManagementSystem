@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {Router, RouterOutlet} from '@angular/router';
 import {environment} from '../../../environments/environment.development';
+import {CartService} from '../../services/cart.service';
 
 @Component({
   selector: 'items',
@@ -21,7 +22,8 @@ export class ItemsComponent {
   newItemName = "";
   newItemPrice = 0;
   constructor(private http: HttpClient,
-              private router: Router) {
+              private router: Router,
+              private cartService: CartService) {
   }
 
   getItemsList() {
@@ -61,8 +63,12 @@ export class ItemsComponent {
         }
       });
   }
-}
 
+  addToCart(item: Item): void {
+    console.log('Adding item to cart:', item);
+    this.cartService.addToCart(item.id, item.productName, item.unitPrice); // Добавляем товар в корзину с количеством 1
+  }
+}
 export interface Item {
   id: number
   createdAt: string

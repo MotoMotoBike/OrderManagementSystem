@@ -1,74 +1,55 @@
-import { HttpClientModule } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {CartItem} from '../../services/cart.item';
+import {CartService} from '../../services/cart.service';
 import {CommonModule} from '@angular/common';
-import {Router, RouterOutlet} from '@angular/router';
-import {environment} from '../../../environments/environment.development';
 
 @Component({
-  selector: 'cart-root',
-  standalone : true,
-  imports: [HttpClientModule, FormsModule, CommonModule, RouterOutlet],
+  selector: 'app-cart',
   templateUrl: './cart.component.html',
+  imports: [CommonModule],
 })
+export class CartComponent implements OnInit {
+  cartItems: CartItem[] = [];
 
-export class CartComponent {
+  constructor(private cartService: CartService) {}
 
-  serverUrl: string = environment.apiBaseUrl;
-  Cart: Item[] = [];
-
-  newItemName = "";
-  newItemPrice = 0;
-  constructor(private http: HttpClient,
-              private router: Router) {
-  }
-
-  getCartList() {
-    this.http.get(this.serverUrl + 'Cart/GetCart')
-      .subscribe((response) => {
-        this.Cart = response as Item[];
-      });
-  }
   ngOnInit(): void {
-    this.getCartList();
+    this.loadCart();
   }
 
-
-  addItem() {
-
-    this.http.post(this.serverUrl + 'Cart/CreateItem',
-      {
-        itemName: this.newItemName,
-        price: this.newItemPrice
-      })
-      .subscribe((response) => {
-        console.log(response);
-        this.getCartList();
-      });
+  // Загрузить товары в корзину
+  loadCart(): void {
+    console.log('Adding item to cart:', this.cartService.getCartItems());
+    this.cartItems = this.cartService.getCartItems();
   }
 
-  removeItem(id: number) {
-    const url = `${this.serverUrl}Cart/DeleteItem?id=${id}`;
-
-    this.http.delete(url)
-      .subscribe({
-        next: (response) => {
-          console.log('Item deleted successfully:', response);
-          this.getCartList();
-        },
-        error: (err) => {
-          console.error('Error occurred while deleting item:', err);
-        }
-      });
+  // Увеличить количество товара в корзине
+  increaseQuantity(item: CartItem): void {
+    this.cartService.addToCart(item.id, item.name, item.price);
+    this.loadCart();
   }
-}
 
-export interface Item {
-  id: number
-  createdAt: string
-  modifiedAt: string
-  isDeleted: boolean
-  productName: string
-  unitPrice: number
+  // Уменьшить количество товара в корзине
+  decreaseQuantity(item: CartItem): void {
+    this.cartService.removeFromCart(item.id);
+    this.loadCart();
+  }
+  calculateTotalPrice(): number {
+    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  }
+  checkout(): void {
+    if (this.cartItems.length === 0) {
+      alert("Ваша корзина пуста. Добавьте товары перед оформлением заказа.");
+    } else {
+      // Логика оформления заказа (например, отправка данных на сервер или другое действие)
+      alert("Заказ оформлен! Спасибо за покупку.");
+      this.clearCart(); // Очистка корзины после оформления
+    }
+  }
+
+    // Очистить корзину
+  clearCart(): void {
+    this.cartService.clearCart();
+    this.loadCart();
+  }
 }
