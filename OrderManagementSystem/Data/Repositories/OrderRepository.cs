@@ -15,7 +15,9 @@ public class OrderRepository : IOrderRepository
 
     public async Task<List<Order>> GetOrdersAsync()
     {
-        return await _context.Get<Order>().Include(o => o.OrderItem).ToListAsync();
+        return await _context.Get<Order>()
+            .Include(o => o.OrderItem)
+            .ThenInclude(o=>o.Item).ToListAsync();
     }
 
     public async Task<Order?> GetOrderAsync(long id)

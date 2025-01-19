@@ -12,7 +12,7 @@ namespace OrderManagementSystem.Data.Configurations
                 .IsRequired(); 
 
             builder.Property(oi => oi.OrderId)
-                .IsRequired(); 
+                .IsRequired();
 
             builder.Property(oi => oi.ItemId)
                 .IsRequired();
@@ -20,11 +20,7 @@ namespace OrderManagementSystem.Data.Configurations
             builder.HasOne(oi => oi.Order)
                 .WithMany(o => o.OrderItem)
                 .HasForeignKey(oi => oi.OrderId)
-                .OnDelete(DeleteBehavior.Cascade); 
-
-            builder.HasOne(oi => oi.Item)
-                .WithOne()
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
