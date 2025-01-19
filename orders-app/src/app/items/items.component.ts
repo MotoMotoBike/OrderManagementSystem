@@ -9,7 +9,6 @@ import {environment} from '../environment';
 @Component({
   selector: 'items-root',
   imports: [HttpClientModule, FormsModule, CommonModule, RouterOutlet],
-  standalone: true,
   templateUrl: './items.component.html'
 })
 

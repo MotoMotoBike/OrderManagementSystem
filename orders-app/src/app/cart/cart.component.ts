@@ -10,7 +10,6 @@ import {environment} from '../environment';
   selector: 'cart-root',
   imports: [HttpClientModule, FormsModule, CommonModule, RouterOutlet],
   templateUrl: './cart.component.html',
-  standalone : true
 })
 
 export class CartComponent {
