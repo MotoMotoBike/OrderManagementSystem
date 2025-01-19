@@ -1,8 +1,8 @@
 <div class="app">
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark shadow-sm">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#">MotoMotoBike</a>
+        <a class="navbar-brand text-light fw-bold" href="#">MotoMotoBike</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -17,16 +17,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active" routerLink="/">Home</a>
+              <a class="nav-link active text-light" routerLink="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/items">Products</a>
+              <a class="nav-link text-light" routerLink="/items">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/cart">Cart</a>
+              <a class="nav-link text-light" routerLink="/cart">Cart</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/orders">Orders</a>
+              <a class="nav-link text-light" routerLink="/orders">Orders</a>
             </li>
           </ul>
         </div>
@@ -37,12 +37,13 @@
   <main class="container mt-4">
     <router-outlet></router-outlet>
   </main>
-
-  <footer class="bg-light text-center py-3 mt-5 border-top">
-    <p class="mb-0">
-      <a href="https://github.com/MotoMotoBike" class="text-decoration-none text-dark fw-bold">
-        GitHub: MotoMotoBike
-      </a>
-    </p>
-  </footer>
+  <div id="container">
+    <footer id="copyright" class="bg-light text-center py-3 mt-5 border-top">
+      <p class="mb-0">
+        <a href="https://github.com/MotoMotoBike" class="text-decoration-none text-dark fw-bold">
+          GitHub: MotoMotoBike
+        </a>
+      </p>
+    </footer>
+  </div>
 </div>

@@ -74,13 +74,39 @@ export class ItemsComponent {
     this.cartService.addToCart(item.id, item.productName, item.unitPrice);
   }
 
-  preventNegative(event: KeyboardEvent): void {
-    const charCode = event.key;
-    if (charCode === '-' || charCode === '+') {
+  validateNumberInput(event: KeyboardEvent): void {
+    const inputValue = (event.target as HTMLInputElement).value + event.key;
+
+    if (event.key === '-' || event.key === '+') {
+      event.preventDefault();
+      return;
+    }
+
+    if (inputValue.startsWith('0') && inputValue[1] !== '.' && inputValue.length > 1) {
+      event.preventDefault();
+      return;
+    }
+
+    const decimalIndex = inputValue.indexOf('.');
+    if (decimalIndex !== -1 && inputValue.substring(decimalIndex + 1).length > 2) {
+      event.preventDefault();
+    }
+    if (inputValue.length > 15) {
       event.preventDefault();
     }
   }
 
+  validateTextInput(event: KeyboardEvent): void {
+    const inputValue = (event.target as HTMLInputElement).value + event.key;
+    if (inputValue.length > 20) {
+      event.preventDefault();
+    }
+  }
+
+  handleFocus(event: FocusEvent): void {
+    const inputElement = event.target as HTMLInputElement;
+    inputElement.value = '';
+  }
 }
 export interface Item {
   id: number
